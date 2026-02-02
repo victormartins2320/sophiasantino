@@ -525,11 +525,12 @@ h1.neon-text {
     opacity: 0.6;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
     /* Gate Page Mobile */
     .gate-container {
         padding: 15px;
+        max-width: 100%;
     }
 
     h1.neon-text {
@@ -565,36 +566,47 @@ h1.neon-text {
 
     .stats-row {
         gap: 10px;
+        flex-wrap: wrap;
     }
 
     .stat-item {
         padding: 8px 12px;
-        min-width: 70px;
+        min-width: 80px;
+        flex: 1;
     }
 
     .stat-value {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .stat-label {
         font-size: 0.7rem;
     }
 
-    /* Stack the preview grid for mobile 
-       Changing to 1 column allows for bigger, clearer images 
-       and more scrolling (engagement) */
+    /* Stack the preview grid for mobile: 1 column */
     .preview-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 400px;
+        gap: 25px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+        padding: 0 10px;
+    }
+
+    .locked-card {
+        aspect-ratio: 4/5;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-bg {
+        transform: scale(1);
     }
 
     .btn-primary {
         width: 100%;
         max-width: 100%;
         border-radius: 12px;
-        padding: 14px;
+        padding: 16px;
+        font-size: 1.1rem;
     }
 }
