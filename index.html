@@ -50,10 +50,10 @@
             </p>
 
             <div class="age-verification">
-                <a href="home.html" class="enter-btn">
+                <div data-redirect="home.html" class="enter-btn" style="cursor: pointer;">
                     QUERO ENTRAR AGORA 🔥
                     <div class="btn-glow"></div>
-                </a>
+                </div>
 
                 <a href="https://www.google.com" class="leave-link">Sair com segurança</a>
             </div>
@@ -64,6 +64,18 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // URL Security Redirect Handler
+        document.querySelectorAll('[data-redirect]').forEach(element => {
+            element.addEventListener('click', () => {
+                const url = element.getAttribute('data-redirect');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
