@@ -1,9 +1,11 @@
 /* Global Vars */
 :root {
     /* Gate Theme */
-    --gate-red: #ff0033;
-    --gate-dark: #0a0000;
-    --gate-glow: rgba(255, 0, 51, 0.6);
+    --gate-red: #e60026;
+    --gate-dark: #050505;
+    --gate-gold: #d4af37;
+    --gate-glow: rgba(230, 0, 38, 0.6);
+    --gold-glow: rgba(212, 175, 55, 0.4);
 
     /* Content Theme */
     --primary-color: #ff5500;
@@ -123,8 +125,8 @@ h1.neon-text {
 }
 
 .gate-description {
-    color: #ccc;
-    font-size: 1rem;
+    color: #eee;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
     line-height: 1.6;
     margin-bottom: 35px;
     font-weight: 400;
@@ -137,20 +139,21 @@ h1.neon-text {
 
 .enter-btn {
     display: block;
-    background: var(--gate-red);
+    background: linear-gradient(135deg, var(--gate-red) 0%, #8b0000 100%);
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     text-decoration: none;
-    padding: 20px 30px;
+    padding: 22px 40px;
     border-radius: 50px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 0 25px rgba(255, 0, 51, 0.4);
-    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(230, 0, 38, 0.5);
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .enter-btn:hover {
@@ -192,10 +195,12 @@ h1.neon-text {
     margin-top: 30px;
     display: flex;
     gap: 20px;
-    color: #555;
-    font-size: 0.75rem;
-    font-weight: 600;
+    color: var(--gate-gold);
+    font-size: 0.85rem;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--gold-glow);
 }
 
 /* Animations */
@@ -226,15 +231,15 @@ h1.neon-text {
    CONTENT PAGE STYLES (Mandy Profile) 
    ========================================= */
 .content-page {
-    background-color: #f9f9f9;
-    color: var(--text-dark);
+    background-color: var(--gate-dark);
+    color: #eee;
 }
 
 .profile-header {
-    background: white;
+    background: #0f0f0f;
     padding-bottom: 20px;
     text-align: center;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 0, 51, 0.2);
 }
 
 .banner-container {
@@ -262,9 +267,9 @@ h1.neon-text {
     height: 120px;
     margin: 0 auto 15px;
     border-radius: 50%;
-    padding: 4px;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 3px;
+    background: linear-gradient(135deg, var(--gate-red), var(--gate-gold));
+    box-shadow: 0 0 20px rgba(230, 0, 38, 0.4);
 }
 
 .profile-pic {
@@ -280,13 +285,15 @@ h1.neon-text {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .profile-info h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    color: #000;
+    color: #fff;
     margin-bottom: 4px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .handle {
@@ -313,13 +320,14 @@ h1.neon-text {
 }
 
 .stat-item {
-    background: #f8f8f8;
+    background: #1a1a1a;
     padding: 10px 20px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-width: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-value {
@@ -409,24 +417,52 @@ h1.neon-text {
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: blur(8px);
-    /* Blur the content slightly for "locked" effect */
-    transform: scale(1.1);
-    /* Prevent white edges from blur */
+    filter: blur(3px);
+    /* Reduzi o blur de 8px para 3px para ficar mais visível */
+    transform: scale(1.05);
+    /* Pequeno zoom para evitar bordas brancas do blur */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.locked-card:hover .card-bg {
+    filter: blur(1.5px);
+    /* Quase nítido no hover */
+    transform: scale(1.15);
 }
 
 .lock-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(10, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 15px;
+    transition: background 0.3s;
+}
+
+.locked-card:hover .lock-overlay {
+    background: rgba(230, 0, 38, 0.4);
+}
+
+.exclusive-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--gate-red);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 5;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .lock-icon-circle {
@@ -584,29 +620,70 @@ h1.neon-text {
     }
 
     /* Stack the preview grid for mobile: 1 column */
+    /* Better grid for mobile: 2 columns is usually better for curiosity than 1 */
     .preview-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0;
     }
 
     .locked-card {
         aspect-ratio: 4/5;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
 
     .card-bg {
-        transform: scale(1);
+        transform: scale(1.05);
+    }
+
+    .profile-info h1 {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+    }
+
+    /* Small screens fix (e.g. iPhone SE) */
+    @media (max-width: 360px) {
+        .preview-grid {
+            grid-template-columns: 1fr;
+        }
+
+        h1.neon-text {
+            font-size: 1.2rem;
+        }
+
+        .highlight-red {
+            font-size: 1.6rem;
+        }
     }
 
     .btn-primary {
         width: 100%;
         max-width: 100%;
         border-radius: 12px;
-        padding: 16px;
-        font-size: 1.1rem;
+        padding: 18px;
+        font-size: 1.2rem;
+        box-shadow: 0 10px 30px rgba(230, 0, 38, 0.4);
     }
+
+    /* Sticky Footer */
+    .sticky-footer-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 5, 5, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 15px;
+        border-top: 1px solid rgba(230, 0, 38, 0.3);
+        z-index: 1000;
+        display: block;
+    }
+
+    .content-container {
+        padding-bottom: 120px;
+        /* Space for sticky footer */
+    }
+}
+
+.sticky-footer-cta {
+    display: none;
 }
